@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class CardGame
+{
+ static Scanner input = new Scanner(System.in);
+    static int playerWins = 0;
+    static int systemWins = 0;
+
+    public static void main(String[] args)
+    {
+        String start;
+
+        do
+        {
+            System.out.print("Enter Y to start the game: ");
+            start = input.nextLine().toUpperCase();
+
+            if (!start.equals("Y"))
+            {
+                System.out.println("Invalid input. Please enter Y.");
+            }
+
+        } while (!start.equals("Y"));
+
+        boolean systemFirst = false;
+        boolean playAgain = true;
+
+        while (playAgain)
+        {
+            systemFirst = playRound(systemFirst);
+
+            displayLeaderboard();
+
+            String answer;
+
+            do
+            {
+                System.out.print("\nPlay another round? (Y/N): ");
+                answer = input.nextLine().toUpperCase();
+
+                if (!answer.equals("Y") && !answer.equals("N"))
+                {
+                    System.out.println("Invalid input.");
+                }
+
+            } while (!answer.equals("Y") && !answer.equals("N"));
+
+            if (answer.equals("N"))
+            {
+                playAgain = false;
+            }
+        }
+
+        System.out.println("\nThank you for playing!");
+    }
+
+    public static boolean playRound(boolean systemFirst)
+    {
+        ArrayList<Integer> playerCards = new ArrayList<Integer>();
+        ArrayList<Integer> systemCards = new ArrayList<Integer>();
+
+        playerCards.add(drawCard());
+        systemCards.add(drawCard());
+
+        System.out.println("\n====================");
+        System.out.println("NEW ROUND");
+        System.out.println("====================");
+
+        System.out.println("Player starting card: "
+                + playerCards.get(0));
+
+        System.out.println("System starting card: "
+                + systemCards.get(0));
+
+        boolean playerBust = false;
+        boolean systemBust = false;
+
+
+          
