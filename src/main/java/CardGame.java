@@ -74,6 +74,58 @@ public class CardGame
 
         boolean playerBust = false;
         boolean systemBust = false;
+        if (systemFirst)
+        {
+            System.out.println("\nSystem goes first this round.");
+
+
+            systemBust = systemTurn(systemCards);
+
+
+            if (!systemBust)
+            {
+                playerBust = playerTurn(playerCards);
+            }
+        }
+        else
+        {
+ 		System.out.println("\nPlayer goes first this round.");
+
+
+            playerBust = playerTurn(playerCards);
+
+
+            if (!playerBust)
+            {
+                systemBust = systemTurn(systemCards);
+            }
+        }
+
+
+        int playerTotal = calculateTotal(playerCards);
+        int systemTotal = calculateTotal(systemCards);
+
+
+        System.out.println("\n----- Final Results -----");
+        System.out.println("Player Cards: " + playerCards);
+        System.out.println("Player Total: " + playerTotal);
+
+
+        System.out.println("System Cards: " + systemCards);
+        System.out.println("System Total: " + systemTotal);
+
+
+        if (playerBust)
+        {
+            System.out.println("\nPlayer busts! System wins.");
+            systemWins++;
+            return false;
+        }
+        else if (systemBust)
+        {
+            System.out.println("\nSystem busts! Player wins.");
+            playerWins++;
+            return false;
 
 
           
