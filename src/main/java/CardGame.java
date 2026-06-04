@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CardGame
@@ -126,6 +127,28 @@ public class CardGame
             System.out.println("\nSystem busts! Player wins.");
             playerWins++;
             return false;
+             }
+        else if (playerTotal > systemTotal)
+        {
+            System.out.println("\nPlayer wins!");
+            playerWins++;
+            return false;
+        }
+        else if (systemTotal > playerTotal)
+        {
+            System.out.println("\nSystem wins!");
+            systemWins++;
+            return false;
+        }
+        else
+        {
+            System.out.println("\nDraw!");
+            System.out.println(
+                "Next round will start with the system.");
+            return true;
+        }
+    }
+
 
 
           
