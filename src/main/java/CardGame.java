@@ -148,6 +148,69 @@ public class CardGame
             return true;
         }
     }
+ public static boolean playerTurn(ArrayList<Integer> cards)
+    {
+        int choice;
+
+
+        while (true)
+        {
+            System.out.println("\nYour Cards: " + cards);
+            System.out.println("Current Total: "
+                    + calculateTotal(cards));
+
+
+            do
+            {
+                System.out.print(
+                    "Enter 1 to draw a card or 2 to stop: ");
+
+
+                while (!input.hasNextInt())
+                {
+                    System.out.println("Invalid input.");
+                    input.next();
+                }
+
+
+                choice = input.nextInt();
+
+
+                if (choice != 1 && choice != 2)
+                {
+                    System.out.println(
+                        "Please enter 1 or 2.");
+                }
+
+
+            } while (choice != 1 && choice != 2);
+
+
+            input.nextLine();
+
+
+            if (choice == 2)
+            {
+                break;
+            }
+
+
+            int card = drawCard();
+            cards.add(card);
+
+
+            System.out.println("You drew: " + card);
+
+
+            if (calculateTotal(cards) > 21)
+            {
+                return true;
+            }
+        }
+
+
+        return false;
+    }
 
 
 
