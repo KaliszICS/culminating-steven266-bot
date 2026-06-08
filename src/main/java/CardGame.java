@@ -211,7 +211,54 @@ public class CardGame
 
         return false;
     }
+     public static boolean systemTurn(ArrayList<Integer> cards)
+    {
+        System.out.println("\nSystem's Turn");
 
 
+        while (calculateTotal(cards) < 17)
+        {
+            int card = drawCard();
+            cards.add(card);
 
-          
+
+            System.out.println("System drew a card: " + card);
+
+
+            System.out.println("System Total: "+ calculateTotal(cards));
+            
+            if (calculateTotal(cards) > 21)
+            {
+                return true;
+            }
+        }
+
+        System.out.println("System stops drawing at " + calculateTotal(cards));
+        return false;
+    }
+
+        public static int drawCard()
+    {
+        return (int)(Math.random() * 15) + 1;
+    }
+        public static int calculateTotal(
+            ArrayList<Integer> cards)
+    {
+        int total = 0;
+
+        for (int card : cards)
+        {
+            total += card;
+        }
+        return total;
+    }
+
+        public static void displayLeaderboard()
+    {
+        System.out.println("\n====================");
+        System.out.println("LEADERBOARD");
+        System.out.println("====================");
+        System.out.println("Player Wins: " + playerWins);
+        System.out.println("System Wins: " + systemWins);
+    }
+}
